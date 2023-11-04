@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*   NOOT NOOT MOTHER FUCKER                      :#:  :#:         :#:  :#:   */
+/*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                :#:  :#::#     #::#:  :#:   */
 /*   By: an asshole who like to break thing       :#:  :#::#: # :#::#:  :#:   */
 /*                                                :##::##: :#:#:#: :##::##:   */
 /*   Created: the-day-it-was created by UwU        :####:  :##:##:  :####:    */
-/*   Updated: the-day-it-was updated by UwU                                   */
+/*   Updated: 2023/11/04 17:53:43 by abareux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,10 @@ void	calc_img(t_map *map)
 static
 void	my_keyhook(mlx_key_data_t keydata, void *param)
 {
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+		mlx_close_window(((t_map *)param)->mlx);
 	if (check_win(param))
-		return ;
+		mlx_close_window(((t_map *)param)->mlx);
 	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
 		if (move_up(param))
 			calc_img(param);
@@ -91,8 +93,6 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 			calc_img(param);
 	if (keydata.action == MLX_PRESS)
 		show_move(param);
-	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-		mlx_close_window(((t_map *)param)->mlx);
 }
 
 int	main(int argc, char **argv)
