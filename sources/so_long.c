@@ -91,6 +91,8 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 			calc_img(param);
 	if (keydata.action == MLX_PRESS)
 		show_move(param);
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+		mlx_close_window(((t_map *)param)->mlx);
 }
 
 int	main(int argc, char **argv)
