@@ -6,21 +6,22 @@
 /*   By: an asshole who like to break thing       :#:  :#::#: # :#::#:  :#:   */
 /*                                                :##::##: :#:#:#: :##::##:   */
 /*   Created: the-day-it-was created by UwU        :####:  :##:##:  :####:    */
-/*   Updated: 2023/11/03 21:10:43 by abareux          ###   ########.fr       */
+/*   Updated: 2023/11/04 14:16:43 by abareux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 static
-void	send_error(int nbentry, int nbexit, int nbcollectibles, t_map *map)
+void	send_error(int nbentry, int nbexit, int nbcollectible, t_map *map)
 {
 	if (nbentry != 1)
 		error(map, 2);
 	if (nbexit != 1)
 		error(map, 3);
-	if (nbcollectibles < 1)
+	if (nbcollectible < 1)
 		error(map, 4);
+	map->collectible = nbcollectible;
 }
 
 static
@@ -70,6 +71,20 @@ void	check_wall(t_map *map)
 				error(map, 5);
 		cursor++;
 	}
+}
+
+_Bool	check_win(t_map *map)
+{
+	int	cursor;
+
+	cursor = 0;
+	while (cursor < map->width * map->height)
+	{
+		if (*(map->data + cursor) == 'E')
+			return (0);
+		cursor++;
+	}
+	return (1);
 }
 
 void	check_map(t_map *map)

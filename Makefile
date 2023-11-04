@@ -1,4 +1,4 @@
-files = so_long load_map show_map check_map error
+files = so_long load_map show_move check_map move error
 
 sources = $(foreach buffer, $(files), sources/$(buffer).c)
 
