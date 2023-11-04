@@ -6,7 +6,7 @@
 /*   By: an asshole who like to break thing       :#:  :#::#: # :#::#:  :#:   */
 /*                                                :##::##: :#:#:#: :##::##:   */
 /*   Created: the-day-it-was created by UwU        :####:  :##:##:  :####:    */
-/*   Updated: 2023/11/04 15:30:19 by abareux          ###   ########.fr       */
+/*   Updated: 2023/11/04 15:43:18 by abareux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	calc_img(t_map *map)
 			send_image(map, img[1], c % map->width, c / map->height);
 		if (*(map->data + c) == 'C')
 			send_image(map, img[2], c % map->width, c / map->height);
-		if (*(map->data + c) == 'M')
+		if (*(map->data + c) == 'M' || (*(map->data + c) == 'P' && !map->move))
 			send_image(map, img[3], c % map->width, c / map->height);
 		if (*(map->data + c) == 'E')
 			send_image(map, img[4], c % map->width, c / map->height);

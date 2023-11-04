@@ -6,7 +6,7 @@
 /*   By: an asshole who like to break thing       :#:  :#::#: # :#::#:  :#:   */
 /*                                                :##::##: :#:#:#: :##::##:   */
 /*   Created: the-day-it-was created by UwU        :####:  :##:##:  :####:    */
-/*   Updated: 2023/11/04 15:15:44 by abareux          ###   ########.fr       */
+/*   Updated: 2023/11/04 15:37:48 by abareux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	move_up(t_map *map)
 	cursor = 0;
 	while (*(map->data + cursor) != check_first_move(map))
 		cursor++;
+	if (*(map->data + cursor - map->width) == 'P')
+		return (0);
 	if (*(map->data + cursor - map->width) != '1')
 	{
 		if (*(map->data + cursor - map->width) == 'C')
@@ -52,6 +54,8 @@ int	move_down(t_map *map)
 	cursor = 0;
 	while (*(map->data + cursor) != check_first_move(map))
 		cursor++;
+	if (*(map->data + cursor + map->width) == 'P')
+		return (0);
 	if (*(map->data + cursor + map->width) != '1')
 	{
 		if (*(map->data + cursor + map->width) == 'C')
@@ -77,6 +81,8 @@ int	move_right(t_map *map)
 	cursor = 0;
 	while (*(map->data + cursor) != check_first_move(map))
 		cursor++;
+	if (*(map->data + cursor + 1) == 'P')
+		return (0);
 	if (*(map->data + cursor + 1) != '1')
 	{
 		if (*(map->data + cursor + 1) == 'C')
@@ -102,6 +108,8 @@ int	move_left(t_map *map)
 	cursor = 0;
 	while (*(map->data + cursor) != check_first_move(map))
 		cursor++;
+	if (*(map->data + cursor - 1) == 'P')
+		return (0);
 	if (*(map->data + cursor - 1) != '1')
 	{
 		if (*(map->data + cursor - 1) == 'C')
