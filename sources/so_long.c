@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   NOOT NOOT MOTHER FUCKER                      :#:  :#:         :#:  :#:   */
 /*                                                :#:  :#::#     #::#:  :#:   */
 /*   By: an asshole who like to break thing       :#:  :#::#: # :#::#:  :#:   */
 /*                                                :##::##: :#:#:#: :##::##:   */
 /*   Created: the-day-it-was created by UwU        :####:  :##:##:  :####:    */
-/*   Updated: 2023/11/04 15:43:18 by abareux          ###   ########.fr       */
+/*   Updated: the-day-it-was updated by UwU                                   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,17 @@ void	calc_img(t_map *map)
 	c = 0;
 	while (c < map->width * map->height)
 	{
-		send_image(map, img[0], c % map->width, c / map->height);
+		send_image(map, img[0], c % map->width, c / map->width);
 		if (*(map->data + c) == '1')
-			send_image(map, img[1], c % map->width, c / map->height);
+			send_image(map, img[1], c % map->width, c / map->width);
 		if (*(map->data + c) == 'C')
-			send_image(map, img[2], c % map->width, c / map->height);
+			send_image(map, img[2], c % map->width, c / map->width);
 		if (*(map->data + c) == 'M' || (*(map->data + c) == 'P' && !map->move))
-			send_image(map, img[3], c % map->width, c / map->height);
+			send_image(map, img[3], c % map->width, c / map->width);
 		if (*(map->data + c) == 'E')
-			send_image(map, img[4], c % map->width, c / map->height);
+			send_image(map, img[4], c % map->width, c / map->width);
 		if (*(map->data + c) == 'P')
-			send_image(map, img[5], c % map->width, c / map->height);
+			send_image(map, img[5], c % map->width, c / map->width);
 		c++;
 	}
 }

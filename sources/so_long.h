@@ -6,7 +6,7 @@
 /*   By: an asshole who like to break thing       :#:  :#::#: # :#::#:  :#:   */
 /*                                                :##::##: :#:#:#: :##::##:   */
 /*   Created: the-day-it-was created by UwU        :####:  :##:##:  :####:    */
-/*   Updated: 2023/11/04 14:07:17 by abareux          ###   ########.fr       */
+/*   Updated: 2023/11/04 16:21:18 by abareux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ void	show_move(t_map *map);
 
 _Bool	check_win(t_map *map);
 void	check_map(t_map *map);
+
+// function in check_path.c
+
+void	check_path(t_map *map);
 
 // funcrion in move.c
 

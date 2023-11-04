@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*   load_map.c                                         :+:      :+:    :+:   */
+/*   NOOT NOOT MOTHER FUCKER                      :#:  :#:         :#:  :#:   */
 /*                                                :#:  :#::#     #::#:  :#:   */
 /*   By: an asshole who like to break thing       :#:  :#::#: # :#::#:  :#:   */
 /*                                                :##::##: :#:#:#: :##::##:   */
 /*   Created: the-day-it-was created by UwU        :####:  :##:##:  :####:    */
-/*   Updated: 2023/11/03 20:59:51 by abareux          ###   ########.fr       */
+/*   Updated: the-day-it-was updated by UwU                                   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,29 @@ void	put_data(t_map *map, char *data)
 	map->height = 1;
 }
 
+static
+void	check_location(const char	*location)
+{
+	int	len;
+
+	len = ft_strlen(location) - 1;
+	if (*(location + len) != 'r')
+		error(NULL, -1);
+	if (*(location + len - 1) != 'e')
+		error(NULL, -1);
+	if (*(location + len - 2) != 'b')
+		error(NULL, -1);
+	if (*(location + len - 3) != '.')
+		error(NULL, -1);
+}
+
 t_map	*load_map(const char	*location)
 {
 	int		file_map;
 	char	*buffer_line;
 	t_map	*map;
 
+	check_location(location);
 	map = malloc(sizeof(t_map));
 	if (!map)
 		error(map, 0);
