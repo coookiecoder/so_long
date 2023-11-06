@@ -14,5 +14,11 @@
 
 void	show_move(t_map *map)
 {
-	ft_putendl_fd(ft_itoa(map->move), 1);
+	char	*buffer;
+
+	buffer = ft_itoa(map->move);
+	if (!buffer)
+		error(map, 0);
+	ft_putendl_fd(buffer, 1);
+	free(buffer);
 }

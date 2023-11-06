@@ -12,47 +12,52 @@
 
 #include "so_long.h"
 
-void	error_img(t_map *map, mlx_image_t *img[6])
+mlx_texture_t	*c_png(const char *location, mlx_image_t *img[6], \
+t_map *map, mlx_texture_t *old)
+{
+	mlx_texture_t	*texture;
+
+	texture = mlx_load_png(location);
+	if (!texture)
+		error_img(map, img);
+	if (old)
+		mlx_delete_texture(old);
+	return (texture);
+}
+
+void	check_loaded(mlx_image_t *img[6], t_map *map)
 {
 	int	cursor;
 
 	cursor = 0;
 	while (cursor < 6)
 	{
-		if (img[cursor])
-			mlx_delete_image(map->mlx, img[cursor]);
-		cursor++;
+		if (!img[cursor++])
+			error_img(map, img);
 	}
-	free(map->data);
-	free(map);
-	write(1, "error while loading asset\n", 27);
-	exit(-1);
 }
 
-void	error(t_map *map, int error_number)
+char	*c_ft_strjoin(char *s1, char *s2, int mode)
 {
-	if (error_number == -1)
-		write(1, "File name error\n", 16);
-	else if (error_number)
+	char	*result;
+
+	result = ft_strjoin(s1, s2);
+	if (mode == 1 || mode == 3)
+		free(s1);
+	if (mode == 2 || mode == 3)
+		free(s2);
+	return (result);
+}
+
+char	*check_ft_strdup(char *s, t_map *map)
+{
+	char	*buffer;
+
+	buffer = ft_strdup(s);
+	if (!buffer)
 	{
-		write(1, "Error\nMap Invalid\n", 19);
-		if (error_number == 2)
-			write(1, "Wrong start number\n", 20);
-		if (error_number == 3)
-			write(1, "Wrong exit number\n", 19);
-		if (error_number == 4)
-			write(1, "Wrong collectible number\n", 26);
-		if (error_number == 5)
-			write(1, "Missing wall outside\n", 22);
-		if (error_number == 6)
-			write(1, "No path found\n", 15);
+		free(s);
+		error(map, 0);
 	}
-	else
-		write(1, "Malloc error\n", 14);
-	if (map)
-		if (map->data)
-			free (map->data);
-	if (map)
-		free(map);
-	exit(error_number);
+	return (buffer);
 }

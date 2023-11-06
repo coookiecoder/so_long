@@ -27,18 +27,19 @@ void	put_data(t_map *map, char *data)
 
 	if (map->data)
 	{
-		buffer = ft_calloc((map->width * (map->height + 1)) + 1, 1);
+		buffer = malloc((map->width * (map->height + 1)) + 1);
 		if (!buffer || (int)ft_strlen(data) - 1 != map->width)
 		{
 			ft_free(data, buffer);
 			error(map, 1);
 		}
 		ft_strlcpy(buffer, map->data, ((map->width) * (map->height)++) + 1);
-		buffer = ft_strjoin(buffer, data);
+		buffer = c_ft_strjoin(buffer, data, 1);
+		free(map->data);
 		map->data = buffer;
 		return ;
 	}
-	map->data = ft_calloc(ft_strlen(data), 1);
+	map->data = malloc(ft_strlen(data));
 	if (!map->data)
 	{
 		free(data);
@@ -78,6 +79,7 @@ t_map	*load_map(const char	*location)
 	file_map = open(location, O_RDONLY);
 	map->width = 0;
 	map->height = 0;
+	map->data = NULL;
 	buffer_line = get_next_line(file_map);
 	while (buffer_line)
 	{

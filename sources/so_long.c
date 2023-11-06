@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   NOOT NOOT MOTHER FUCKER                      :#:  :#:         :#:  :#:   */
 /*                                                :#:  :#::#     #::#:  :#:   */
 /*   By: an asshole who like to break thing       :#:  :#::#: # :#::#:  :#:   */
 /*                                                :##::##: :#:#:#: :##::##:   */
 /*   Created: the-day-it-was created by UwU        :####:  :##:##:  :####:    */
-/*   Updated: 2023/11/04 17:53:43 by abareux          ###   ########.fr       */
+/*   Updated: the-day-it-was updated by UwU                                   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 static
-void	load_asset(mlx_image_t *img[6], t_map *map)
+void	load_asset(mlx_image_t *img[6], t_map *map, mlx_texture_t *texture)
 {
-	mlx_texture_t *texture;
-
-	if (map->move)
+	if (img[0])
 	{
 		mlx_delete_image(map->mlx, img[0]);
 		mlx_delete_image(map->mlx, img[1]);
@@ -26,17 +24,17 @@ void	load_asset(mlx_image_t *img[6], t_map *map)
 		mlx_delete_image(map->mlx, img[4]);
 		mlx_delete_image(map->mlx, img[5]);
 	}
-	texture = mlx_load_png("asset/floor.png");
+	texture = c_png("asset/floor.png", img, map, texture);
 	img[0] = mlx_texture_to_image(map->mlx, texture);
-	texture = mlx_load_png("asset/wall.png");
+	texture = c_png("asset/wall.png", img, map, texture);
 	img[1] = mlx_texture_to_image(map->mlx, texture);
-	texture = mlx_load_png("asset/Collectible.png");
+	texture = c_png("asset/Collectible.png", img, map, texture);
 	img[2] = mlx_texture_to_image(map->mlx, texture);
-	texture = mlx_load_png("asset/Player.png");
+	texture = c_png("asset/Player.png", img, map, texture);
 	img[3] = mlx_texture_to_image(map->mlx, texture);
-	texture = mlx_load_png("asset/DoorIn.png");
+	texture = c_png("asset/DoorIn.png", img, map, texture);
 	img[4] = mlx_texture_to_image(map->mlx, texture);
-	texture = mlx_load_png("asset/DoorOut.png");
+	texture = c_png("asset/DoorOut.png", img, map, texture);
 	img[5] = mlx_texture_to_image(map->mlx, texture);
 	mlx_delete_texture(texture);
 }
@@ -53,7 +51,8 @@ void	calc_img(t_map *map)
 	static mlx_image_t	*img[6];
 	int					c;
 
-	load_asset(img, map);
+	load_asset(img, map, NULL);
+	check_loaded(img, map);
 	c = 0;
 	while (c < map->width * map->height)
 	{

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*   NOOT NOOT MOTHER FUCKER                      :#:  :#:         :#:  :#:   */
+/*   check_path.c                                       :+:      :+:    :+:   */
 /*                                                :#:  :#::#     #::#:  :#:   */
 /*   By: an asshole who like to break thing       :#:  :#::#: # :#::#:  :#:   */
 /*                                                :##::##: :#:#:#: :##::##:   */
 /*   Created: the-day-it-was created by UwU        :####:  :##:##:  :####:    */
-/*   Updated: the-day-it-was updated by UwU                                   */
+/*   Updated: 2023/11/06 10:10:12 by abareux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ void	init(char **map_cpy, char **map_buffer, int *csr, t_map *map)
 {
 	*map_cpy = ft_strdup(map->data);
 	*map_buffer = ft_strdup(map->data);
+	if (!map_cpy)
+		free(map_cpy);
+	if (!map_buffer)
+		free(map_buffer);
+	if (!map_cpy || !map_buffer)
+		error(map, 0);
 	*csr = 0;
 }
 
@@ -75,14 +81,12 @@ void	check_path(t_map *map)
 	found = 0;
 	while (ft_strncmp(map_buffer, map_cpy, map->width * map->height))
 	{
-		map_buffer = ft_strdup(map_cpy);
+		free(map_buffer);
+		map_buffer = check_ft_strdup(map_cpy, map);
 		cursor = 0;
 		while (*(map_cpy + cursor))
-		{
-			if (*(map_cpy + cursor) == '2')
-				check_surrounding(map_cpy + cursor, &found, map);
-			cursor++;
-		}
+			if (*(map_cpy + cursor++) == '2')
+				check_surrounding(map_cpy + cursor - 1, &found, map);
 	}
 	free(map_cpy);
 	free(map_buffer);

@@ -1,4 +1,4 @@
-files = so_long load_map show_move check_map check_path move error
+files = so_long load_map show_move check_map check_path check_loaded move error
 
 sources = $(foreach buffer, $(files), sources/$(buffer).c)
 
@@ -48,6 +48,6 @@ fclean: $(libft)fclean $(MLX42)clean
 re: fclean $(libft)re $(MLX42)re all
 
 debug: all
-	$(CC) $(CFLAGS) $(sources) $(gnl) $(libft) $(MLX42) -Iinclude -ldl -lglfw -pthread -lm -o $(NAME) -g3
+	$(CC) $(CFLAGS) $(sources) $(gnl) $(libft) $(MLX42) -Iinclude -ldl -lglfw -pthread -lm -o $(NAME) -g3 -fsanitize=address
 
 .PHONY: all clean fclean re debug

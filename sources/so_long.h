@@ -6,7 +6,7 @@
 /*   By: an asshole who like to break thing       :#:  :#::#: # :#::#:  :#:   */
 /*                                                :##::##: :#:#:#: :##::##:   */
 /*   Created: the-day-it-was created by UwU        :####:  :##:##:  :####:    */
-/*   Updated: 2023/11/04 16:21:18 by abareux          ###   ########.fr       */
+/*   Updated: 2023/11/06 10:07:09 by abareux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,39 @@ typedef struct s_map {
 
 // function in error.c
 
-void	error(t_map *map, int error_number);
+void			error_img(t_map *map, mlx_image_t *img[6]);
+void			error(t_map *map, int error_number);
 
 // function in load_map.c
 
-t_map	*load_map(const char *location);
+t_map			*load_map(const char *location);
 
 // function in show_move.c
 
-void	show_move(t_map *map);
+void			show_move(t_map *map);
 
 // function in check_map.c
 
-_Bool	check_win(t_map *map);
-void	check_map(t_map *map);
+_Bool			check_win(t_map *map);
+void			check_map(t_map *map);
 
 // function in check_path.c
 
-void	check_path(t_map *map);
+void			check_path(t_map *map);
 
 // funcrion in move.c
 
-int		move_up(t_map *map);
-int		move_down(t_map *map);
-int		move_right(t_map *map);
-int		move_left(t_map *map);
+int				move_up(t_map *map);
+int				move_down(t_map *map);
+int				move_right(t_map *map);
+int				move_left(t_map *map);
+
+// function in check_loaded.c
+
+void			check_loaded(mlx_image_t *img[6], t_map *map);
+mlx_texture_t	*c_png(const char *location, mlx_image_t *img[6], \
+t_map *map, mlx_texture_t *texture);
+char			*c_ft_strjoin(char *s1, char *s2, int mode);
+char			*check_ft_strdup(char *s, t_map *map);
 
 #endif
