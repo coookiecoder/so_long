@@ -69,6 +69,7 @@ void	calc_img(t_map *map)
 			send_image(map, img[5], c % map->width, c / map->width);
 		c++;
 	}
+	show_move(map);
 }
 
 static
@@ -90,8 +91,6 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 	if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
 		if (move_left(param))
 			calc_img(param);
-	if (keydata.action == MLX_PRESS)
-		show_move(param);
 }
 
 int	main(int argc, char **argv)
